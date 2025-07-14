@@ -120,12 +120,7 @@ You can build a browser-based dashboard or mobile app to consume this data.
 
 Supervisors: Dr. Zeki U. Kocabıyıkoğlu & Instructor Murat Sever
 
----
 
-## 📄 License
-This project is licensed under the MIT License.
-
----
 
 ## 🎯 Future Improvements
 - Speaker verification for command authorization
