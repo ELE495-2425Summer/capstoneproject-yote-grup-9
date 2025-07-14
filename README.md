@@ -122,8 +122,3 @@ You can build a browser-based dashboard or mobile app to consume this data.
 Supervisors: Dr. Zeki U. Kocabıyıkoğlu & Instructor Murat Sever
 
 
-
-## 🎯 Future Improvements
-- Speaker verification for command authorization
-- Android/iOS UI via Expo or Flutter
-- Offline LLM and TTS deployment using local models
