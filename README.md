@@ -62,7 +62,7 @@ os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "<YOUR_JSON_CREDENTIAL_PATH>"
 
 ### 5. Run the System
 ```bash
-python3 son_denemeler.py
+python YOTE_AUTO_CONTROL.py
 ```
 
 ---
