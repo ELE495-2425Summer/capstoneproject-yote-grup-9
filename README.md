@@ -14,7 +14,6 @@ This project implements a **speech-controlled autonomous mini vehicle** that int
 ---
 
 ## System Overview
-![System Diagram](System_Overview.drawio.png)
 
 1. **Speech Input** via microphone
 2. **Speech-to-Text** (Google STT)
