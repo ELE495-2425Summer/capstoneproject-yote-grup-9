@@ -1,8 +1,8 @@
-# 🚗 Speech-Controlled Autonomous Mini Vehicle
+# Speech-Controlled Autonomous Mini Vehicle
 
 ELE 495 Senior Design Project (2024-2025)
 
-## 📌 Project Description
+## Project Description
 This project implements a **speech-controlled autonomous mini vehicle** that interprets Turkish voice commands and executes them using a mecanum wheel system. The vehicle uses:
 - **Google STT API** for speech recognition
 - **Gemini 2.5 Flash (LLM)** for natural language understanding
@@ -13,7 +13,7 @@ This project implements a **speech-controlled autonomous mini vehicle** that int
 
 ---
 
-## 🧠 System Overview
+## System Overview
 ![System Diagram](System_Overview.drawio.png)
 
 1. **Speech Input** via microphone
@@ -25,7 +25,7 @@ This project implements a **speech-controlled autonomous mini vehicle** that int
 
 ---
 
-## 🔧 Technologies Used
+## Technologies Used
 - Python 3
 - Raspberry Pi 5 (8GB)
 - Google Speech-to-Text API
@@ -36,7 +36,7 @@ This project implements a **speech-controlled autonomous mini vehicle** that int
 
 ---
 
-## 🛠️ Setup & Installation
+## Setup & Installation
 ### 1. Clone the Repository
 ```bash
 git clone https://github.com/<your-username>/speech-car.git
@@ -68,7 +68,7 @@ python3 son_denemeler.py
 
 ---
 
-## 🎙️ Example Command
+## Example Command
 **Input:** "Engel çıkana kadar düz git, sonra sağa dön."
 
 **LLM Output (JSON):**
@@ -90,7 +90,7 @@ python3 son_denemeler.py
 
 ---
 
-## 🖥️ User Interface Features
+## User Interface Features
 Real-time TCP socket server sends JSON data to connected clients:
 - `vehicle_state`: current movement and speed
 - `stt_output`: last transcribed sentence
@@ -101,12 +101,14 @@ You can build a browser-based dashboard or mobile app to consume this data.
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 ```bash
 .
 ├── YOTE_AUTO_CONTROL.py          # Main application
-├── CommandSounds/            # Pre-recorded MP3 feedback
-├── requirements.txt          # Python dependencies
+├── server.py               # UI Server application
+├── index.html              # UI Server index
+├── requirements.txt        # Python dependencies
+├── sensor_readings         # Ultrasonic Sensor Reading for Arduino UNO
 └── README.md
 ```
 
