@@ -1,0 +1,12 @@
+# Required Python Packages for Speech-Controlled Autonomous Vehicle
+
+google-generativeai         # Google Gemini LLM ile doğal dil komutlarını anlamak için
+google-cloud-texttospeech   # Google Cloud TTS ile Türkçe sesli yanıt üretimi için
+sounddevice                 # Mikrofon ile ses kaydı almak için
+scipy                       # Kaydedilen sesi WAV dosyasına yazmak için (sounddevice ile birlikte)
+requests                    # Google API’lerine HTTP istekleri göndermek için
+numpy                       # Ses buffer’ları ve sayısal işlemler için
+pyserial                    # Sensör verisini seri porttan okumak için
+playsound                   # MP3 dosyalarını çalmak için (örneğin komut geri bildirimi)
+RPi.GPIO                    # Raspberry Pi GPIO pinlerini kontrol etmek için (motor sürme)
+retry                       # Gemini API çağrılarında hata durumunda yeniden deneme için
