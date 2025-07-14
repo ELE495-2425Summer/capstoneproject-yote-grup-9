@@ -1,40 +1,133 @@
-# TOBB ETÜ ELE495 - Capstone Project
+# 🚗 Speech-Controlled Autonomous Mini Vehicle
 
-# Table of Contents
-- [Introduction](#introduction)
-- [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Screenshots](#screenshots)
-- [Acknowledgements](#acknowledgements)
+ELE 495 Senior Design Project (2024-2025)
 
-## Introduction
-Provide a brief overview of the project, its purpose, and what problem it aims to solve.
+## 📌 Project Description
+This project implements a **speech-controlled autonomous mini vehicle** that interprets Turkish voice commands and executes them using a mecanum wheel system. The vehicle uses:
+- **Google STT API** for speech recognition
+- **Gemini 2.5 Flash (LLM)** for natural language understanding
+- **Google TTS API** for voice feedback
+- **Raspberry Pi 5** as the embedded controller
 
-## Features
-List the key features and functionalities of the project.
-- Hardware: The hardware components used (should be listed with links)
-- Operating System and packages
-- Applications 
-- Services 
+> The system supports real-time sensor feedback, autonomous navigation with obstacle handling, and a TCP-based user interface for monitoring vehicle status.
 
-## Installation
-Describe the steps required to install and set up the project. Include any prerequisites, dependencies, and commands needed to get the project running.
+---
 
+## 🧠 System Overview
+![System Diagram](System_Overview.drawio.png)
+
+1. **Speech Input** via microphone
+2. **Speech-to-Text** (Google STT)
+3. **Natural Language Parsing** (Gemini LLM)
+4. **Command Execution** with sensor-aware navigation
+5. **Text-to-Speech Feedback** (Google TTS)
+6. **Real-time UI Feedback** over TCP
+
+---
+
+## 🔧 Technologies Used
+- Python 3
+- Raspberry Pi 5 (8GB)
+- Google Speech-to-Text API
+- Google Gemini 2.5 Flash (via `google.generativeai`)
+- Google Cloud Text-to-Speech API
+- Sensor communication via UART
+- Real-time web interface (socket-based)
+
+---
+
+## 🛠️ Setup & Installation
+### 1. Clone the Repository
 ```bash
-# Example commands
-git clone https://github.com/username/project-name.git
-cd project-name
+git clone https://github.com/<your-username>/speech-car.git
+cd speech-car
 ```
 
-## Usage
-Provide instructions and examples on how to use the project. Include code snippets or screenshots where applicable.
+### 2. Install Dependencies
+```bash
+pip install -r requirements.txt
+```
 
-## Screenshots
-Include screenshots of the project in action to give a visual representation of its functionality. You can also add videos of running project to YouTube and give a reference to it here. 
+### 3. Add Your API Keys
+Update the following in `son_denemeler.py`:
+```python
+GOOGLE_API_KEY = "<YOUR_GEMINI_API_KEY>"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "<YOUR_JSON_CREDENTIAL_PATH>"
+```
 
-## Acknowledgements
-Give credit to those who have contributed to the project or provided inspiration. Include links to any resources or tools used in the project.
+### 4. Prepare Hardware
+- Raspberry Pi 5
+- 4-channel motor driver
+- Ultrasonic sensors (front, back, left, right)
+- Microphone & speaker (connected via USB or Pi’s audio jack)
 
-[Contributor 1](https://github.com/user1)
-[Resource or Tool](https://www.nvidia.com)
+### 5. Run the System
+```bash
+python3 son_denemeler.py
+```
+
+---
+
+## 🎙️ Example Command
+**Input:** "Engel çıkana kadar düz git, sonra sağa dön."
+
+**LLM Output (JSON):**
+```json
+{
+  "command": "forward",
+  "condition": "until_obstacle",
+  "speed": 20,
+  "duration": 1,
+  "next_command": {
+    "command": "right",
+    "speed": 20,
+    "duration": 1
+  }
+}
+```
+
+**Voice Feedback:** "İleri gidip ardından sağa döneceğim."
+
+---
+
+## 🖥️ User Interface Features
+Real-time TCP socket server sends JSON data to connected clients:
+- `vehicle_state`: current movement and speed
+- `stt_output`: last transcribed sentence
+- `current_command`: parsed command
+- `command_history`: last 10 executed commands
+
+You can build a browser-based dashboard or mobile app to consume this data.
+
+---
+
+## 📂 Project Structure
+```bash
+.
+├── YOTE_AUTO_CONTROL.py          # Main application
+├── CommandSounds/            # Pre-recorded MP3 feedback
+├── requirements.txt          # Python dependencies
+└── README.md
+```
+
+---
+
+## 👥 Team
+- Özgür ARKAN – 211201036
+- Tarık ELTÜRK – 211201069
+- Elif COŞAR – 191201063
+- Yusuf Ferhat YILMAN – 211501010
+
+Supervisors: Dr. Zeki U. Kocabıyıkoğlu & Instructor Murat Sever
+
+---
+
+## 📄 License
+This project is licensed under the MIT License.
+
+---
+
+## 🎯 Future Improvements
+- Speaker verification for command authorization
+- Android/iOS UI via Expo or Flutter
+- Offline LLM and TTS deployment using local models
